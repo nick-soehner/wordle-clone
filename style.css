@@ -1,0 +1,91 @@
+:root {
+--background-color: hsl(240, 3%, 7%);
+}
+
+*,*::after, *::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-color: var(--background-color);
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: .5em;
+    min-height: 100vh;
+    font-size: clamp(1rem, 2vmin, 1.5rem);
+}   
+
+.keyboard {
+    display: grid;
+    grid-template-columns: repeat(20, minmax(auto, .95em));
+    grid-auto-rows: 2.8em;
+    gap: .25em;
+    row-gap: .4em;
+    justify-content: center;
+}
+
+.key {
+    grid-column: span 2;
+    border: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: hsl(
+        var(--hue, 200), 
+        var(--saturation, 1%), 
+        calc(var(--lightness-offset, 0%) + var(--lightness, 51%))
+    );
+    color: white;
+    fill: white;
+    text-transform: uppercase;
+    border-radius: .25em;
+    cursor: pointer;
+    user-select: none;
+}
+
+.key.large {
+    grid-column: span 3;
+}
+
+.key:hover,
+.key:focus {
+    --lightness-offset: 10%;
+}
+
+.key.wrong {
+    --lightness: 23%;
+}
+
+.key.wrong-location {
+    --hue: 49;
+    --saturation: 51%;
+    --lightness: 47%;
+}
+
+.key.correct {
+    --hue: 115;
+    --saturation: 29%;
+    --lightness: 43%;
+}
+
+.guess-grid {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    flex-grow: 1;
+    grid-template-columns: repeat(5, 3em);
+    grid-template-rows: repeat(6, 3em);
+    gap: .25em;
+}
+
+.tile {
+    background-color: red;
+}
+
+
+
